@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do Not Click</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    color: white;
+    text-align: center;
+  }
+
+  .container {
+    z-index: 2;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  button {
+    padding: 15px 25px;
+    font-size: 1em;
+    border: none;
+    border-radius: 30px;
+    background: red;
+    color: white;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: darkred;
+  }
+
+  /* JUMPSCARE IMAGE */
+  #scare {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  #scare img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: shake 0.2s infinite;
+  }
+
+  @keyframes shake {
+    0% { transform: translate(2px, 2px); }
+    25% { transform: translate(-2px, -2px); }
+    50% { transform: translate(2px, -2px); }
+    75% { transform: translate(-2px, 2px); }
+    100% { transform: translate(2px, 2px); }
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>⚠️ DO NOT CLICK ⚠️</h1>
+  <p>This page is unstable 😳</p>
+  <button onclick="triggerScare()">CLICK AT YOUR OWN RISK</button>
+</div>
+
+<div id="scare">
+  <img src="https://i.imgur.com/8QfQh2L.png" alt="scary">
+</div>
+
+<!-- SCREAM SOUND -->
+<audio id="scream" src="https://www.myinstants.com/media/sounds/movie_1.mp3"></audio>
+
+<script>
+function triggerScare() {
+  const scare = document.getElementById("scare");
+  const scream = document.getElementById("scream");
+
+  scare.style.display = "flex";
+  scream.play();
+
+  // optional: auto close after 4 seconds
+  setTimeout(() => {
+    scare.style.display = "none";
+  }, 4000);
+}
+</script>
+
+</body>
+</html>
